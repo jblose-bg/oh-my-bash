@@ -17,6 +17,11 @@ function _sshcomplete {
         COMPREPLY=($(compgen -W "$(grep ^Host "$HOME/.ssh/config" | awk '{for (i=2; i<=NF; i++) print $i}' )" ${OPTIONS}) )
     fi
 
+    # parse the config.d hosts if config.d is in use
+    if [ -d "$HOME/.ssh/config.d" ]; then 
+        COMPREPLY=($(compgen -W "$(grep -r ^Host "$HOME/.ssh/config.d" | awk '{for (i=2; i<=NF; i++) print $i}' )" ${OPTIONS}) )       
+    fi
+
     # parse all hosts found in .ssh/known_hosts
     if [ -r "$HOME/.ssh/known_hosts" ]; then
         if grep -v -q -e '^ ssh-rsa' "$HOME/.ssh/known_hosts" ; then
