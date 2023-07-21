@@ -20,7 +20,7 @@ function _omb_theme_PROMPT_COMMAND() {
 
     local arrow="${arrow_color}➜${_omb_prompt_reset_color}"
 
-    PS1="${arrow}  ${base_directory} "
+    PS1="$(kube_ps1) ${arrow}  ${base_directory} "
 
     local scm_info=$(scm_prompt_info)
 
