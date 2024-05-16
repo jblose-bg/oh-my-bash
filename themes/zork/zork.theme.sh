@@ -20,6 +20,23 @@ case $TERM in
         ;;
 esac
 
+function generate_emoji_gibberish() {
+  emojis=("🐒" "👻" "👽" "🎃" "🤡" "🐙" "🍕" "🚀" "🌛" "💀" "🐛" "💩" "🐀" "🪳" "🤢"
+          "🦠" "🧟" "👹" "👺" "🦑" "🦍" "🦧" "🦨" "🦡" "🐧" "🕷 " "🕸 " "🦂" "🦗" "🦟"
+          "🐍" "🦎" "🦖" "🦕" "🐊" "🐡" "🐠" "🐙" "🦑" "🦐" "🦀" "🐝" "🦋" "🐌" "🐞"
+          "🐜" "🦗" "🪲" "🪳" "🦠" "🌵" "🎍" "🍄" "🌾" "🌿" "🍃" "🍂" "🍁" "🍀" "🎃"
+          "🦇" "🌑" "🌒" "🌓" "🌔" "🌕" "🌖" "🌗" "🌘" "🌙" "🌚" "🌝" "🌛" "🌜" "🌡 "
+          "💧" "🧃" "🍵" "🧊" "🛢 " "🪓" "🗡 " "🛡 " "⚰️" "🪦" "🏺" "🔮" "🕯 " "🪔" "📜"
+          "🪙" "📯" "🎭" "🧩" "🧬" "🧪" "🧫" "🧯" "🔬" "🔭" "📡" "💊" "💉" "🦠" "🧼"
+          "🧴" "🚽" "🚰" "🪠" "🛁" "🛀" "🧽" "🧺" "🧻" "🚪" "🪤" "🪒" "🧹" "🧷" "🔩") # Array of emojis
+  gibberish=""
+  for ((i=0; i<$1; i++)); do
+    random_emoji=${emojis[$RANDOM % ${#emojis[@]}]}
+    gibberish+=$random_emoji
+  done
+  echo $gibberish
+}
+
 PS3=">> "
 
 function __my_rvm_ruby_version {
@@ -84,15 +101,15 @@ function _omb_theme_PROMPT_COMMAND {
     # nice prompt
     case "`id -u`" in
         0) PS1="${TITLEBAR}┌─$(my_ve)$(chroot)[$my_ps_root][$my_ps_host_root]$(modern_scm_prompt)$(__my_rvm_ruby_version)[${_omb_prompt_teal}\w${_omb_prompt_normal}]$(is_vim_shell)$(kube_ps1)
-└─▪ "
+└─$(generate_emoji_gibberish 1) "
         ;;
         *) PS1="${TITLEBAR}┌─$(my_ve)$(chroot)[$my_ps_user][$my_ps_host]$(modern_scm_prompt)$(__my_rvm_ruby_version)[${_omb_prompt_teal}\w${_omb_prompt_normal}]$(is_vim_shell)$(kube_ps1)
-└─▪ "
+└─$(generate_emoji_gibberish 1) "
         ;;
     esac
 }
 
-PS2="└─▪ "
+PS2="└─$(generate_emoji_gibberish 1) "
 
 
 
