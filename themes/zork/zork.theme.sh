@@ -96,7 +96,7 @@ function _omb_theme_PROMPT_COMMAND {
     then
         ve=`basename $VIRTUAL_ENV`;
     fi
-    source /home/berkshiregrey.com/jamison.blose/.kube-ps1.sh
+    source /home/jamison.blose@berkshiregrey.com/.kube-ps1.sh
 # export PS1=$PS1$(kube_ps1)
     # nice prompt
     case "`id -u`" in
